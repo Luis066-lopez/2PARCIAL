@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEGUNDO PARCIAL TEM-742</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        table { width: 80%; margin: 20px auto; border-collapse: collapse; }
+        th, td { padding: 10px; border: 1px solid #ccc; }
+        th { background-color: #f4f4f4; }
+        h1 { font-size: 28px; }
+        h2 { font-size: 24px; }
+        h3 { font-size: 18px; }
+    </style>
+</head>
+<body>
+    <h1>SEGUNDO PARCIAL TEM-742</h1>
+    <h2>Nombre: Jorge Luis Dueñas Lopez</h2>
+    <h3>Carnet: 6933229</h3>
+    <h1>Gestion de Productos</h1>
+    
+    <a href="{{ url_for('nuevo_producto') }}">
+        <button>Nuevo Producto</button>
+    </a>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+            <th>Fecha de Vencimiento</th>
+            <th>Categoría</th>
+            <th>Acciones</th>
+        </tr>
+        {% for producto in productos %}
+        <tr>
+            <td>{{ producto.id }}</td>
+            <td>{{ producto.nombre }}</td>
+            <td>{{ producto.cantidad }}</td>
+            <td>{{ producto.precio }}</td>
+            <td>{{ producto.fecha_vencimiento }}</td>
+            <td>{{ producto.categoria }}</td>
+            <td>
+                <a href="{{ url_for('editar_producto', id=producto.id) }}">Editar</a> |
+                <a href="{{ url_for('eliminar_producto', id=producto.id) }}">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
